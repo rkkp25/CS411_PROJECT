@@ -1,7 +1,6 @@
 # CS411_PROJECT
 
-## Team Number: 42
-## Team Members: Kris Peters, Ashton Fox, Valentina Haddad, Mithat Kus
+## Team 42 Members: Kris Peters, Ashton Fox, Valentina Haddad, Mithat Kus
 
 ### Ideas
 
