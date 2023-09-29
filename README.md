@@ -51,6 +51,9 @@ def get_apod(date, api_key):
 	response = requests.get(url=url, params=params)
 	return response.json() 
 
+apod = get_apod("2010-10-10")
+idk wtf he wrong after this
+
 ```
 
 
