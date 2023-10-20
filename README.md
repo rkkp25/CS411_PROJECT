@@ -90,3 +90,10 @@ src:
 npm run dev (dev is  ascript in package.json)
 
 ### think of a website of top left, right down
+
+
+```
+pip3 list
+pip3 freeze > requirements.txt
+pip install --upgrade pip
+```
