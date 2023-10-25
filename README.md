@@ -9,10 +9,10 @@ Mithat: mthtks@bu.edu
 ## Notes
 
 Branches: 
-* historicolor_backend_ashton
-* historicolor_backend_valentina
-* historicolor_frontend_kris
-* historicolor_frontend_mithat
+* ashton
+* valentina
+* kris
+* mithat
 
 to view all the branches, use the command:
 ```
