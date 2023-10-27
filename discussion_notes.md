@@ -94,4 +94,30 @@ pip3 freeze > requirements.txt
 pip install --upgrade pip
 ```
 
+## 10/27 Dis
 
+files in flask folder:
+* virtualenv -p python3 venv ( this is a file)
+* .env 
+* main.py
+
+make sure to do pip install flask
+
+```
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def hello_world():
+    return "<p>Hello, World!</p>"
+
+if __name__ == "__main__":
+    app.run(port=8080, debug=True)
+
+```
+
+how to run it:
+* flask-app flask --app main run --port=8080
+    * its on 127.0.0.1:8080
+* make sure that your server IS RUNNING when you test this
