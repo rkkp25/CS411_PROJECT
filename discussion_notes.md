@@ -149,9 +149,11 @@ def hello_world():
     return "<h1>NASA APOD</h1>"
 
 app.route("/apod/<date>", methods=["GET"])
-def get_apod(date):
+def get_apod(): (used to have date here but put it in the line below)
+    date = flask.request.args.get("date")
     url = f"https://api.nasa.gov/planetary/apod?date={date}" (this lets you querery (??) the date)
     params = {
+        "date": date,
         "api_key": DATA_GOV_APT_KEY
     }
     if flask.request.method == "GET"
@@ -171,3 +173,4 @@ flask-app curl -X GET -G "http....apod" -> youll get the output on your terminal
 flask-app curl -X GET -G "http://127.0.0.1:8080/apod-2023-10-26" -I (or no -I)
 flask-app curl -X GET -G "http://127.0.0.1:8080/apod-2023-10-26" -D '{"date":"2023-10-26"}'
 * gets the api output for oct 26 2023
+* if you dont do -D, itll do the current date
