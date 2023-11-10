@@ -174,3 +174,4 @@ flask-app curl -X GET -G "http://127.0.0.1:8080/apod-2023-10-26" -I (or no -I)
 flask-app curl -X GET -G "http://127.0.0.1:8080/apod-2023-10-26" -D '{"date":"2023-10-26"}'
 * gets the api output for oct 26 2023
 * if you dont do -D, itll do the current date
+

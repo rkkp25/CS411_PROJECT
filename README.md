@@ -18,3 +18,8 @@ to view all the branches, use the command:
 ```
 git branch
 ```
+
+to run the project and display the webpage, cd into the src/ file, and type in the command line:
+```
+npm run dev
+```
