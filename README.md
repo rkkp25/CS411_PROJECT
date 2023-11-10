@@ -18,3 +18,11 @@ to view all the branches, use the command:
 ```
 git branch
 ```
+to run the web page, go into src/ and run:
+```
+npm run dev
+```
+to pull from main into your branch, make sure you're in your branch and run:
+```
+git pull origin main
+```
