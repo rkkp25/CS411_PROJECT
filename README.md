@@ -23,3 +23,12 @@ to run the project and display the webpage, cd into the src/ file, and type in t
 ```
 npm run dev
 ```
+=======
+to run the web page, go into src/ and run:
+```
+npm run dev
+```
+to pull from main into your branch, make sure you're in your branch and run:
+```
+git pull origin main
+```
