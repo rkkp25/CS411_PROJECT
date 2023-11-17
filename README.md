@@ -79,3 +79,13 @@ to run the project and display the webpage, cd into the src/ file, and type in t
 ```
 npm run dev
 ```
+to pull from main into your branch, make sure you're in your branch and run:
+```
+git pull origin main
+```
+
+how to add your changes to the main branch:
+1. from your branch, push your changes to the repo
+2. go onto GitHub and there should be a button to view the changes ("pull request")
+3. check changes and approve push
+4. everything should be updated in main for everyone to pull from
