@@ -14,7 +14,7 @@ Branches:
 * kris
 * mithat
 
-### before you start working, GIT PULL into your branch to get all the latest changes
+# before you start working, GIT PULL into your branch to get all the latest changes
 
 ## Git commands
 to view all your local branches:
@@ -54,6 +54,12 @@ git push --delete -d <branch_name>
 ```
 you may also do this on github.com when you merge your branch to the main branch - it asks if you want to delete your branch
 
+how to add your changes from YOUR branch to the main branch:
+1. from your branch, push your changes to the repo
+2. go onto GitHub and there should be a button to view the changes ("pull request")
+3. check changes and approve push
+4. everything should be updated in main for everyone to pull from
+
 ## Solving Conflicts
 1. when you push, if there are remote changes, you'll need to git pull first
 2. then you need to merge those changes with yours
@@ -72,20 +78,9 @@ text
 you want to edit the file accordingly, and remove the <<<< HEAD, =====, and <<<<< hash # (those 3 lines). then, add/commit/push that file. 
 otherwise, if the changes are on different lines, you just have to save and exit from the commit message file (the commit message is written for you) then, push that file (it has already been added and commited)
 
-### =====
-
+## Running the website
 
 to run the project and display the webpage, cd into the src/ file, and type in the command line:
 ```
 npm run dev
 ```
-to pull from main into your branch, make sure you're in your branch and run:
-```
-git pull origin main
-```
-
-how to add your changes to the main branch:
-1. from your branch, push your changes to the repo
-2. go onto GitHub and there should be a button to view the changes ("pull request")
-3. check changes and approve push
-4. everything should be updated in main for everyone to pull from
