@@ -23,7 +23,7 @@ git branch
 ```
 to view ALL branches including remote:
 ```
-git branch -a"
+git branch -a
 ```
 ### Pulling from remote repo
 to pull from github/origin into your branch/local, make sure you're in the branch you want to pull into and run:
