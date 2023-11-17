@@ -8,12 +8,6 @@ Mithat: mthtks@bu.edu
 
 ## Notes
 
-Branches: 
-* ashton
-* valentina
-* kris
-* mithat
-
 # before you start working, GIT PULL into your branch to get all the latest changes
 
 ## Git commands
@@ -34,17 +28,17 @@ to view ALL branches including remote:
 git branch -a
 ```
 ### Pulling from remote repo
-to pull from github/origin into your branch/local, make sure you're in the branch you want to pull into and run:
+to pull from github/origin into your branch/local, make sure you're in the branch you want to pull into (probably just main) and run:
 ```
 git pull
-```
-error: the current branch has no upstream - you're pushing a branch for the first time:
-```
-git push -u origin <branch_name>
 ```
 error during git pull: you have divergent branches and need to specify how to reconcile them, use command:
 ```
 git config pull.rebase false
+```
+error: the current branch has no upstream - you're pushing a branch for the first time:
+```
+git push -u origin <branch_name>
 ```
 when in branch X and you do
 ```
@@ -57,7 +51,7 @@ to delete a branch:
 ```
 git branch -d <branch_name>
 ```
-after that, you want to delete it remotely
+after that, you want to delete it remotely  
 to delete a branch remotely:
 ```
 git push --delete -d <branch_name>
