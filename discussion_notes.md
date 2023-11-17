@@ -94,4 +94,84 @@ pip3 freeze > requirements.txt
 pip install --upgrade pip
 ```
 
+## 10/27 Dis
+
+files in flask folder:
+* virtualenv -p python3 venv ( this is a file)
+* .env 
+* main.py
+
+make sure to do pip install flask
+
+```
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def hello_world():
+    return "<p>Hello, World!</p>"
+```
+OR
+```
+if __name__ == "__main__":
+    app.run(port=8080, debug=True)
+
+```
+
+how to run it:
+* flask-app flask --app main run --port=8080
+    * its on 127.0.0.1:8080
+* make sure that your server IS RUNNING when you test this
+
+in .env file:
+* do pip install env (i think)
+```
+DATA_GOV_API_KEY= (insert api key)
+```
+
+### Full main.py file:
+```
+import os
+
+//from flask import Flask
+import flask
+from dotenv import load_dotenv
+
+
+load_dotenv()
+DATA_GOV_API_KEY = os.environ.get("DATA_GOV_API_KEY")
+
+app = Flask(__name__)
+
+@app.route("/")
+def hello_world():
+    return "<h1>NASA APOD</h1>"
+
+app.route("/apod/<date>", methods=["GET"])
+def get_apod(): (used to have date here but put it in the line below)
+    date = flask.request.args.get("date")
+    url = f"https://api.nasa.gov/planetary/apod?date={date}" (this lets you querery (??) the date)
+    params = {
+        "date": date,
+        "api_key": DATA_GOV_APT_KEY
+    }
+    if flask.request.method == "GET"
+        response = requests.get(url=url, params=params)
+    response = request.get(url=url, params=params)
+    return response.json()
+
+if __name__ == "__main__":
+    app.run(port=8080)
+```
+
+waitress: not necessary but you could import serve, and then when doing if __name__ ... do server(port=...) instead
+
+when you add the apod route, and add /apod to your browser link, itll give you the output of the route
+
+flask-app curl -X GET -G "http....apod" -> youll get the output on your terminal
+flask-app curl -X GET -G "http://127.0.0.1:8080/apod-2023-10-26" -I (or no -I)
+flask-app curl -X GET -G "http://127.0.0.1:8080/apod-2023-10-26" -D '{"date":"2023-10-26"}'
+* gets the api output for oct 26 2023
+* if you dont do -D, itll do the current date
 

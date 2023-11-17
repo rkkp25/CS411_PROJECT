@@ -4,11 +4,11 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
+  --background-start-rgb: 214, 219, 220; 
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
@@ -24,4 +24,24 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+table {
+  table-layout: fixed ;
+  width: 100% ;
+  border-collapse: collapse ;
+  border: 1px black solid ;
+}
+table tr {
+    width: 50% ;
+    border: 1px black solid ;
+    padding: 10px ;
+}
+table td {
+  width: 50% ;
+  border: 1px black solid ;
+  padding: 10px ;
+}
+table caption {
+  font-style: italic ;
 }
