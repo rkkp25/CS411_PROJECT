@@ -38,7 +38,7 @@ to pull from github/origin into your branch/local, make sure you're in the branc
 ```
 git pull
 ```
-pushing a branch for the first time:
+error: the current branch has no upstream - you're pushing a branch for the first time:
 ```
 git push -u origin <branch_name>
 ```
