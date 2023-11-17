@@ -28,7 +28,7 @@ body {
 
 table {
   table-layout: fixed ;
-  width: 100% ;
+  width: 20% ;
   border-collapse: collapse ;
   border: 1px black solid ;
 }

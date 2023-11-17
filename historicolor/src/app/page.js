@@ -66,23 +66,23 @@ export default function Home() {
           </tr>
           <tr>
             <td>Kris</td>
-            <td>Kris Score</td>
+            <td>K Score</td>
           </tr>
           <tr>
             <td>Valentina</td>
-            <td>Valentina Score</td>
+            <td>V Score</td>
           </tr>
           <tr>
             <td>Ashton</td>
-            <td>Ashton Score</td>
+            <td>A Score</td>
           </tr>
           <tr>
             <td>Mithat</td>
-            <td>Mithat Score</td>
+            <td>M Score</td>
           </tr>
           <tr>
             <td>Amongus</td>
-            <td>Amongus Score</td>
+            <td>A Score</td>
           </tr>
          </tbody>
         </table>
