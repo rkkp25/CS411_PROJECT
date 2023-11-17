@@ -17,6 +17,14 @@ Branches:
 # before you start working, GIT PULL into your branch to get all the latest changes
 
 ## Git commands
+to create a new branch:
+```
+git checkout -b <branch_name>
+```
+* normally when creating a branch, you name it whatever feature you are trying to implement, like "adding_buttons" or "fixing_bug", not just our names
+* thats why when you finish pushing that branch to github, you delete it after, since you finished working on that feature
+* this isn't necessary, but good to help keep things organized and practice for irl work  
+
 to view all your local branches:
 ```
 git branch
@@ -44,15 +52,21 @@ git merge Y
 ```
 you pull the changes from that branchY into branch X
 * after merging, you typically want to delete YOUR branch:
+you may also do this on github.com when you merge your branch to the main branch - it asks if you want to delete your branch - DELETE IT, then remove the branch locally:  
 to delete a branch:
 ```
 git branch -d <branch_name>
 ```
+after that, you want to delete it remotely
 to delete a branch remotely:
 ```
 git push --delete -d <branch_name>
 ```
-you may also do this on github.com when you merge your branch to the main branch - it asks if you want to delete your branch
+and then prune so that the local knows that the branch isn't on the server anymore (because you did the delete remote):
+```
+git remote prune origin
+```
+the prune isn't necessary, but it keeps things organized so you don't get confused  
 
 how to add your changes from YOUR branch to the main branch:
 1. from your branch, push your changes to the repo
