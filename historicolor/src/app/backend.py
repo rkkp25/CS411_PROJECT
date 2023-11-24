@@ -1,6 +1,7 @@
 import flask
 from flask import Flask, Response, request, flask_login, render_template, redirect, url_for
 import mysql.connector
+import math
 import os, base64
 
 mysql = MySQL()
@@ -19,13 +20,35 @@ cursor = conn.cursor()
 
 
 #THIS IS TEMPLATE CODE FOR REFERENCE ON HOW TO PULL DATA FROM THE DATABASE
-cursor = connection.cursor()
-cursor.execute("SELECT * FROM your_table")
-result = cursor.fetchall()
+    # cursor = connection.cursor()
+    # cursor.execute("SELECT * FROM your_table")
+    # result = cursor.fetchall()
 #THIS IS TEMPLACE CODE FOR REFERENCE ON HOW TO PULL DATA FROM THE DATABASE
 
-def calc_score(hex_code):
-    return
+def calc_score(guess_color, acutal_color):
+    #not really sure how this will actually look when its fully implemented, but for now im
+    #going to assume that the inputs are held as arrays of rbg values eg: [255, 255, 255]
+    score = 0
+    assert len(guess_color) == len(actual_color)
+    for i in range(len(guess_color)):
+        score += calc_helper(guess_color[i], actual_color[i])
+    return score
+
+def calc_helper(guess, actual):
+    max_score = 100
+    max_deviation = 30
+
+    deviation = abs(guess - actual)
+
+    # force the deviation to not exceed max_deviation
+    deviation = min(deviation, max_deviation)
+
+    # trying out an exponential decay function to calculate the score
+    score = max_score * math.exp(-deviation / max_deviation)
+    return math.floor(score)
+    # for some reason once you make a score thats worse than a certain
+    # threshhold it always returns a score of 36, dont wanna fix rn
+
 
 def display_scores():
     cursor = conn.cursor()
