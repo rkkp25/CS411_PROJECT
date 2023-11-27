@@ -58,6 +58,34 @@ export default function Home() {
         </a>
 
       </div>
+        <table>
+         <tbody>
+          <tr>
+            <th>Initials</th>
+            <th>Score</th>
+          </tr>
+          <tr>
+            <td>Kris</td>
+            <td>K Score</td>
+          </tr>
+          <tr>
+            <td>Valentina</td>
+            <td>V Score</td>
+          </tr>
+          <tr>
+            <td>Ashton</td>
+            <td>A Score</td>
+          </tr>
+          <tr>
+            <td>Mithat</td>
+            <td>M Score</td>
+          </tr>
+          <tr>
+            <td>Amongus</td>
+            <td>A Score</td>
+          </tr>
+         </tbody>
+        </table>
     </main>
   )
 }

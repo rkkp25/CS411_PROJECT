@@ -25,3 +25,23 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+table {
+  table-layout: fixed ;
+  width: 20% ;
+  border-collapse: collapse ;
+  border: 1px black solid ;
+}
+table tr {
+    width: 50% ;
+    border: 1px black solid ;
+    padding: 10px ;
+}
+table td {
+  width: 50% ;
+  border: 1px black solid ;
+  padding: 10px ;
+}
+table caption {
+  font-style: italic ;
+}
