@@ -1,8 +1,20 @@
 import flask
-from flask import Flask, Response, request, flask_login, render_template, redirect, url_for
+from flask import Flask, Response, request, render_template, redirect, url_for
 import mysql.connector
 import math
 import os, base64
+import requests
+
+#THIS IS THE API STUFF FOR IMAGGA
+api_key = 'acc_ebdfbccb72814fb'
+api_secret = 'e3f77dda74964053df0bd96631db40d1'
+
+#THIS IS AN EXAMPLE TO HOW TO CALL USING THE IMAGGA API (GIVEN WE HAVE AN IMAGE FROM HARVARD API)
+# response = requests.post(
+#     'https://api.imagga.com/v2/colors',
+#     auth=(api_key, api_secret), <-- api_key and api_secret in here msut match the ones above
+#     files={'image': open(image_path, 'rb')}) <-- image_path will be the variable to store harvard api call
+# print(response.json())
 
 mysql = MySQL()
 app = Flask(__name__)
