@@ -41,6 +41,10 @@ export default function Home() {
       <div className="flex flex-row justify-center items-start w-full">
         {/* IMAGE FROM API */}
         <div className="image-component flex flex-col items-center">
+      {/* IMAGE FROM API */}
+      {/* this is where we would make a call to the api and then display the image
+      <div className="main-component">
+      */}
           <a
             className="pointer-events-none"
             target="_blank"
@@ -78,6 +82,78 @@ export default function Home() {
         </div>
       </div>
 
+      {/* table for the side */}
+          <table className="side-table">
+           <tbody>
+            <tr>
+              <td>
+                <div className="centered">
+                Colors
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                this is the form field but it doesn't work
+      {/*
+                <form action="/action_page.php">
+                  <p> Color 1: </p>
+                  <label for="fname">Red:</label>
+                  <input type="text" id="C1R" name="C1R">
+                  <label for="fname">Green:</label>
+                  <input type="text" id="fname" name="fname">
+                  <label for="fname">Blue:</label>
+                  <input type="text" id="fname" name="fname">
+                  <p> Color 2: </p>
+                  <label for="fname">Red:</label>
+                  <input type="text" id="C2R" name="fname">
+                  <label for="fname">Green:</label>
+                  <input type="text" id="fname" name="fname">
+                  <label for="fname">Blue:</label>
+                  <input type="text" id="fname" name="fname">
+
+                  <p> Color 3: </p>
+                  <label for="fname">Red:</label>
+                  <input type="text" id="C3R" name="C3R">
+                  <label for="fname">Green:</label>
+                  <input type="text" id="fname" name="fname">
+                  <label for="fname">Blue:</label>
+                  <input type="text" id="fname" name="fname">
+                  
+                  <input type="submit" value="Submit">
+                </form>
+        */}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Calculated Score
+              </td>
+            </tr>
+           </tbody>
+          </table>
+      {/*
+        <div className="box-container">
+                *colors are supposed to go here*
+        <div className="divider"></div>
+        <div className="enter-rbg">
+            
+        </div>
+        <div className="score">
+            This is where the calculated score would be outputed
+        </div>
+       </div>
+       */}
+         
+
+         </a>
+      </div>
+
+
+
+
+
+      {/*
       <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
         <a
           href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
@@ -96,8 +172,8 @@ export default function Home() {
           </p>
         </a>
       </div>
-
-      {/* SCOREBOARD */}
+*/}
+      {/*  SCOREBOARD */}
       <table>
         <tbody>
           <tr>
