@@ -33,7 +33,6 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-
             <Image
               src="/starry_night.jpg"
               alt="Starry Night"
@@ -76,10 +75,35 @@ export default function Home() {
             </tr>
             <tr>
               <td>
-            C1: Red: blah -- Green: blah -- Blue: blah <br/>
-            C2: Red: blah -- Green: blah -- Blue: blah <br/>
-            C3: Red: blah -- Green: blah -- Blue: blah <br/>
+                this is the form field but it doesn't work
+      {/*
+                <form action="/action_page.php">
+                  <p> Color 1: </p>
+                  <label for="fname">Red:</label>
+                  <input type="text" id="C1R" name="C1R">
+                  <label for="fname">Green:</label>
+                  <input type="text" id="fname" name="fname">
+                  <label for="fname">Blue:</label>
+                  <input type="text" id="fname" name="fname">
+                  <p> Color 2: </p>
+                  <label for="fname">Red:</label>
+                  <input type="text" id="C2R" name="fname">
+                  <label for="fname">Green:</label>
+                  <input type="text" id="fname" name="fname">
+                  <label for="fname">Blue:</label>
+                  <input type="text" id="fname" name="fname">
 
+                  <p> Color 3: </p>
+                  <label for="fname">Red:</label>
+                  <input type="text" id="C3R" name="C3R">
+                  <label for="fname">Green:</label>
+                  <input type="text" id="fname" name="fname">
+                  <label for="fname">Blue:</label>
+                  <input type="text" id="fname" name="fname">
+                  
+                  <input type="submit" value="Submit">
+                </form>
+        */}
               </td>
             </tr>
             <tr>
