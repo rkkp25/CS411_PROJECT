@@ -33,7 +33,6 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-
             <Image
               src="/starry_night.jpg"
               alt="Starry Night"
