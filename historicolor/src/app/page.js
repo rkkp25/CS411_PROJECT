@@ -28,12 +28,12 @@ export default function Home() {
       {/* IMAGE FROM API */}
       {/* this is where we would make a call to the api and then display the image */}
       <div className="main-component">
-        <div className="image-component">
           <a
             className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
             target="_blank"
             rel="noopener noreferrer"
           >
+
             <Image
               src="/starry_night.jpg"
               alt="Starry Night"
@@ -41,29 +41,76 @@ export default function Home() {
               height={2}
               priority
             />
-        <div className="group rounded-lg border border-black px-5 py-4 transition-colors">
-           Color 1 -- Color 2 -- Color 3 
-          <div className="enter-rbg">
-              C1: Red: blah -- Green: blah -- Blue: blah <br/>
-              C2: Red: blah -- Green: blah -- Blue: blah <br/>
-              C3: Red: blah -- Green: blah -- Blue: blah <br/>
-            
-          </div>
-          <div className="score">
-              This is where the calculated score would be outputed
-          </div>
+         <div className="cropped selected-colors">
+            <Image
+              src="/starry_night_yellow.png"
+              alt="Color1"
+              width={40}
+              height={40}
+              priority
+            />
+            <Image
+              src="/starry_night_dark_blue.png"
+              alt="Color2"
+              width={40}
+              height={40}
+              priority
+            />
+            <Image
+              src="/starry_night_light_blue.png"
+              alt="Color3"
+              width={40}
+              height={40}
+              priority
+            />
         </div>
+      {/* table for the side */}
+          <table className="side-table">
+           <tbody>
+            <tr>
+              <td>
+                <div className="centered">
+                Colors
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+            C1: Red: blah -- Green: blah -- Blue: blah <br/>
+            C2: Red: blah -- Green: blah -- Blue: blah <br/>
+            C3: Red: blah -- Green: blah -- Blue: blah <br/>
+
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Calculated Score
+              </td>
+            </tr>
+           </tbody>
+          </table>
+      {/*
+        <div className="box-container">
+                *colors are supposed to go here*
+        <div className="divider"></div>
+        <div className="enter-rbg">
+            
+        </div>
+        <div className="score">
+            This is where the calculated score would be outputed
+        </div>
+       </div>
+       */}
          
 
          </a>
-        </div>
       </div>
 
 
 
 
 
-
+      {/*
       <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
         <a
           href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
@@ -82,7 +129,7 @@ export default function Home() {
           </p>
         </a>
       </div>
-
+*/}
 
       {/*  SCOREBOARD */}
       <table>
