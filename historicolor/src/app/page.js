@@ -37,6 +37,7 @@ export default function Home() {
         </a>
       </div>
 
+
       {/* Flex Container for Image and Color Information */}
       <div className="flex flex-row justify-center items-start w-full">
         {/* IMAGE FROM API */}
