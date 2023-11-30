@@ -26,24 +26,43 @@ export default function Home() {
       </div>
 
       {/* IMAGE FROM API */}
-      {/* this is where we would make a call to the api and then display the image 
-      <div>
-        <div>
+      {/* this is where we would make a call to the api and then display the image */}
+      <div className="main-component">
+        <div className="image-component">
           <a
             className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
             target="_blank"
             rel="noopener noreferrer"
-          </a>
-            <Image 
-              src="starry_night.jpg" 
-              alt="Starry Night">
+          >
+            <Image
+              src="/starry_night.jpg"
+              alt="Starry Night"
               width={500}
-              height={450}
+              height={2}
               priority
-            >
+            />
+        <div className="group rounded-lg border border-black px-5 py-4 transition-colors">
+           Color 1 -- Color 2 -- Color 3 
+          <div className="enter-rbg">
+              C1: Red: blah -- Green: blah -- Blue: blah <br/>
+              C2: Red: blah -- Green: blah -- Blue: blah <br/>
+              C3: Red: blah -- Green: blah -- Blue: blah <br/>
+            
+          </div>
+          <div className="score">
+              This is where the calculated score would be outputed
+          </div>
+        </div>
+         
+
+         </a>
         </div>
       </div>
-      */}
+
+
+
+
+
 
       <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
         <a
