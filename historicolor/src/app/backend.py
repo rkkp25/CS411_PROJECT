@@ -4,6 +4,7 @@ import mysql.connector
 import math
 import os, base64
 import requests
+import random
 
 
 #THIS IS THE API STUFF FOR IMAGGA
@@ -31,6 +32,7 @@ mysql.init_app(app)
 conn = mysql.connect()
 cursor = conn.cursor()
 
+img_append = '/full/843,/0/default.jpg'
 
 #THIS IS TEMPLATE CODE FOR REFERENCE ON HOW TO PULL DATA FROM THE DATABASE
     # cursor = connection.cursor()
@@ -60,7 +62,7 @@ def calc_helper(guess, actual):
     score = max_score * math.exp(-deviation / max_deviation)
     return math.floor(score)
     # for some reason once you make a score thats worse than a certain
-    # threshhold it always returns a score of 36, dont wanna fix rn
+    # threshhold it always returns a score of 36, dont wanna tweak rn
 
 
 def display_scores():
@@ -82,15 +84,36 @@ def find_dominant_color(image):
     return
 
 
-def get_resource(resource_type):
-    base_url = "https://api.harvardartmuseums.org/"
-    api_key = "60834735-51a2-4844-927b-b5aab1affd6c"
-    url = f"{base_url}{resource_type}?apikey={api_key}"
-    
-    response = requests.get(url)
-    
-    if response.status_code == 200:
-        return response.json()
-    else:
-        return None
+
+def randomInt(top):
+    return random.randint(1, top)
+
+def getRandomArtwork(seed, fields=["id", "title", "artist_id", "artist_title", "image_id"]):
+    try:
+        queryParams = {"fields": ",".join(fields)}
+        response =  requests.post(
+            "https://api.artic.edu/api/v1/artworks/search",
+            json={"size": 1, "from": seed},
+            params=queryParams
+        )
+        result = response.json()
+        return (result['config']['iiif_url'] + '/' +  result['data'][0]['image_id'] + img_append)
+    except Exception as error:
+        print("Error:", error)
+
+#DONT ACTUALLY NEED THIS FUNCTION, JUST USE THE ONE ABOVE
+# def getactualimage(iiif, img_id, append):
+#     try:
+#         query = iiif + '/' + img_id + append
+#         image = requests.post(
+#             query
+#         )
+#         return image
+#     except Exception as error:
+#         print("Error:", error)
+
+image= getRandomArtwork(randomInt(100))
+print(image)
+
+
     
