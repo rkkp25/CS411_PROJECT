@@ -4,6 +4,7 @@ import mysql.connector
 import math
 import os, base64
 import requests
+import random
 
 #THIS IS THE API STUFF FOR IMAGGA
 api_key = 'acc_ebdfbccb72814fb'
@@ -81,3 +82,18 @@ def find_dominant_color(image):
     return
 
 
+def randomInt(top):
+    return random.randint(1, top)
+
+def getRandomArtwork(seed, fields=["id", "title", "artist_id", "artist_title", "image_id"]):
+    try:
+        queryParams = {"fields": ",".join(fields)}
+        response =  requests.post(
+            "https://api.artic.edu/api/v1/artworks/search",
+            json={"size": 1, "from": seed},
+            params=queryParams
+        )
+        result = response.json()
+        return result
+    except Exception as error:
+        print("Error:", error)
