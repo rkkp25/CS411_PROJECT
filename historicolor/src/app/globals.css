@@ -29,6 +29,72 @@ body {
     rgb(var(--background-start-rgb));
     */
 }
+/*
+.cropped {
+    width: 30px;
+    height: 30px;
+}
+*/
+.cropped-ofp { 
+    width: 30px;
+    height: 30px;
+    object-position: 25% 25%;
+}
+
+.divider {
+    width: 100%;
+    background-color: black;
+    height: 1px;
+}
+
+.box-container {
+    border-radius: 8px;
+    border: 1px solid black;
+    padding: 1px;
+    transition: color 0.3s;
+}
+
+.main-component {
+    padding: 50px;
+    margin: center;
+
+}
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.side-table {
+  width: 350px; /* this will need to change to accomodate for the new size once fully implemented */
+  border: 1px black solid ;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.side-table caption {
+  font-style: italic ;
+}
+
+table {
+  table-layout: fixed ;
+  width: 20% ;
+  border-collapse: collapse ;
+  border: 1px black solid ;
+}
+table tr {
+    width: 50% ;
+    border: 1px black solid ;
+    padding: 10px ;
+}
+table td {
+  width: 50% ;
+  border: 1px black solid ;
+  padding: 10px ;
+}
+table caption {
+  font-style: italic ;
+}
 
 table {
   table-layout: fixed ;

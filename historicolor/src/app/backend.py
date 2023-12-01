@@ -6,6 +6,7 @@ import os, base64
 import requests
 import random
 
+
 #THIS IS THE API STUFF FOR IMAGGA
 api_key = 'acc_ebdfbccb72814fb'
 api_secret = 'e3f77dda74964053df0bd96631db40d1'
@@ -83,6 +84,7 @@ def find_dominant_color(image):
     return
 
 
+
 def randomInt(top):
     return random.randint(1, top)
 
@@ -112,3 +114,6 @@ def getRandomArtwork(seed, fields=["id", "title", "artist_id", "artist_title", "
 
 image= getRandomArtwork(randomInt(100))
 print(image)
+
+
+    
