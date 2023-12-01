@@ -32,7 +32,10 @@ mysql.init_app(app)
 conn = mysql.connect()
 cursor = conn.cursor()
 
+
+#GLOBAL VARIABLES FOR WHATEVER
 img_append = '/full/843,/0/default.jpg'
+IMG_POOL = 250
 
 #THIS IS TEMPLATE CODE FOR REFERENCE ON HOW TO PULL DATA FROM THE DATABASE
     # cursor = connection.cursor()
@@ -82,8 +85,8 @@ def save_user_score(name, score):
     conn.commit()
     return
 
-def get_image():
-    return
+def get_image(): #this returns the image url, which we want for imagga api
+    return getRandomArtwork(randomInt(IMG_POOL))
 
 def find_dominant_color(image):
     return
