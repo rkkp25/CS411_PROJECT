@@ -19,6 +19,7 @@
 
 body {
     color: black;
+    font-family: Candara, sans-serif;
 /*    background: white; */
 /*    color: rgb(var(--foreground-rgb)); */
 /*  background: linear-gradient(
@@ -35,6 +36,22 @@ body {
     height: 30px;
 }
 */
+
+.myTextBox {
+  width: 100%; /* Set the width of the textarea */
+  height: 150px; /* Set the height of the textarea */
+  border: 3px double #000000; /* Set the border style and color */
+  padding: 10px; /* Add padding inside the textarea */
+  font-size: 16px; /* Set the font size */
+  box-sizing: border-box; /* Include padding and border in the total width/height */
+  resize: vertical; /* Allow vertical resizing */
+}
+
+.myTextBox:focus {
+  outline: none; /* Remove the default focus outline */
+  border-color: #00F; /* Change border color on focus */
+}
+
 .cropped-ofp { 
     width: 30px;
     height: 30px;
@@ -65,7 +82,7 @@ body {
   align-items: center;
 }
 .side-table {
-  width: 350px; /* this will need to change to accomodate for the new size once fully implemented */
+  width: 310px; /* this will need to change to accomodate for the new size once fully implemented */
   border: 1px black solid ;
   justify-content: center;
   align-items: center;

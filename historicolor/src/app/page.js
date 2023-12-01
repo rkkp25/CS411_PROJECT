@@ -16,6 +16,9 @@ const Circle = ({ color }) => (
 );
 
 
+
+
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -27,6 +30,13 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
+          {/*
+            GETting the image from the backend
+
+          <form action='get_image' method='GET'>
+          </form>
+
+          */}
           <Image
             src="/histori_logo.svg"
             alt="Historicolor Logo"
@@ -67,6 +77,11 @@ export default function Home() {
               <td>
                 <div className="centered">
                   <div style={{ display: 'flex', justifyContent: 'center', margin: '20px 0' }}>
+                    {/* 
+                    <form action='find_dominant_color' methof='GET'>
+
+
+                        */}
                     <Circle color={Color1} />
                     <Circle color={Color2} />
                     <Circle color={Color3} />
@@ -76,24 +91,29 @@ export default function Home() {
             </tr>
             <tr>
               <td>
-                this is the form field but it doesn't work
-      {/*
-                <form action="/action_page.php">
-                  <p> Color 1: </p>
-                  <label for="fname">Red:</label>
-                  <input type="text" id="C1R" name="C1R">
-                  <label for="fname">Green:</label>
-                  <input type="text" id="fname" name="fname">
-                  <label for="fname">Blue:</label>
-                  <input type="text" id="fname" name="fname">
+
+                <form action="calc_score" method='POST'>
+                  <p className="centered"> Put in the RGB values </p> 
+
+                  <label for="fname">Color 1: </label>
+                  <input type="text" name="myTextBox" id="values" name="values"></input>
                   
-                  <input type="submit" value="Submit">
+                  <label for="fname">Color 2: </label>
+                  <input type="text" id="values" name="values"></input>
+
+                  <label for="fname">Color 3: </label>
+                  <input type="text" id="values" name="values"></input>
+
+                  <input type="submit" value="Submit"></input>
                 </form>
-        */}
+      
+
               </td>
             </tr>
             <tr>
               <td>
+                <form action="calc_score" method='GET'>
+                </form>
                 Calculated Score
               </td>
             </tr>
