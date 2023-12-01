@@ -40,7 +40,12 @@ img_append = '/full/843,/0/default.jpg'
     # result = cursor.fetchall()
 #THIS IS TEMPLACE CODE FOR REFERENCE ON HOW TO PULL DATA FROM THE DATABASE
 
-def calc_score(guess_color, acutal_color):
+def calc_score(colors, actual_colors): #most simple function i could ever possibly write
+    for i in range(len(colors)):
+        score += calc_ind_score(colors[i], actual_colors[i])
+    return score
+
+def calc_ind_score(guess_color, acutal_color):
     #not really sure how this will actually look when its fully implemented, but for now im
     #going to assume that the inputs are held as arrays of rbg values eg: [255, 255, 255]
     score = 0
@@ -82,8 +87,6 @@ def get_image():
 
 def find_dominant_color(image):
     return
-
-
 
 def randomInt(top):
     return random.randint(1, top)
