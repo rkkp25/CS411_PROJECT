@@ -9,15 +9,27 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "next": "^13.5.6",
+=======
+    "next": "13.5.6",
+>>>>>>> 1a1de03c3cfe9cf98f1d64ba8c6ca13898cedafb
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "autoprefixer": "^10",
     "eslint": "^8",
     "eslint-config-next": "13.5.6",
     "postcss": "^8",
     "tailwindcss": "^3"
+=======
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8",
+    "eslint-config-next": "13.5.6",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5"
+>>>>>>> 1a1de03c3cfe9cf98f1d64ba8c6ca13898cedafb
   }
 }
