@@ -31,6 +31,7 @@ mysql.init_app(app)
 conn = mysql.connect()
 cursor = conn.cursor()
 
+img_append = '/full/843,/0/default.jpg'
 
 #THIS IS TEMPLATE CODE FOR REFERENCE ON HOW TO PULL DATA FROM THE DATABASE
     # cursor = connection.cursor()
@@ -60,7 +61,7 @@ def calc_helper(guess, actual):
     score = max_score * math.exp(-deviation / max_deviation)
     return math.floor(score)
     # for some reason once you make a score thats worse than a certain
-    # threshhold it always returns a score of 36, dont wanna fix rn
+    # threshhold it always returns a score of 36, dont wanna tweak rn
 
 
 def display_scores():
@@ -94,6 +95,20 @@ def getRandomArtwork(seed, fields=["id", "title", "artist_id", "artist_title", "
             params=queryParams
         )
         result = response.json()
-        return result
+        return (result['config']['iiif_url'] + '/' +  result['data'][0]['image_id'] + img_append)
     except Exception as error:
         print("Error:", error)
+
+#DONT ACTUALLY NEED THIS FUNCTION, JUST USE THE ONE ABOVE
+# def getactualimage(iiif, img_id, append):
+#     try:
+#         query = iiif + '/' + img_id + append
+#         image = requests.post(
+#             query
+#         )
+#         return image
+#     except Exception as error:
+#         print("Error:", error)
+
+image= getRandomArtwork(randomInt(100))
+print(image)
