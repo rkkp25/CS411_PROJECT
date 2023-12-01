@@ -14,7 +14,7 @@ import json
 #     files={'image': open(image_path, 'rb')}) <-- image_path will be the variable to store harvard api call
 # print(response.json())
 
-secrets = json.load(open('apikeys.json'))
+secrets = json.load(open('secrets.json'))
 api_key = secrets['imagga_key']
 api_secret = secrets['imagga_secret']
 
