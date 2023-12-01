@@ -34,8 +34,9 @@ cursor = conn.cursor()
 
 
 #GLOBAL VARIABLES FOR WHATEVER
-img_append = '/full/843,/0/default.jpg'
-IMG_POOL = 250
+img_append = '/full/843,/0/default.jpg' #needed for constructing the image url, pulled from chicago api documentation
+IMG_POOL = 250 #this is how many possible images the method will pull from (img # 2 will always be the same image)
+score = 0 #this is the global score variable that will eventually be stored into the database if the user chooses
 
 #THIS IS TEMPLATE CODE FOR REFERENCE ON HOW TO PULL DATA FROM THE DATABASE
     # cursor = connection.cursor()
@@ -43,7 +44,7 @@ IMG_POOL = 250
     # result = cursor.fetchall()
 #THIS IS TEMPLACE CODE FOR REFERENCE ON HOW TO PULL DATA FROM THE DATABASE
 
-def calc_score(colors, actual_colors): #most simple function i could ever possibly write
+def calc_score(colors, actual_colors, score): #most simple function i could ever possibly write
     for i in range(len(colors)):
         score += calc_ind_score(colors[i], actual_colors[i])
     return score
@@ -85,12 +86,6 @@ def save_user_score(name, score):
     conn.commit()
     return
 
-def get_image(): #this returns the image url, which we want for imagga api
-    return getRandomArtwork(randomInt(IMG_POOL))
-
-def find_dominant_color(image):
-    return
-
 def randomInt(top):
     return random.randint(1, top)
 
@@ -106,6 +101,14 @@ def getRandomArtwork(seed, fields=["id", "title", "artist_id", "artist_title", "
         return (result['config']['iiif_url'] + '/' +  result['data'][0]['image_id'] + img_append)
     except Exception as error:
         print("Error:", error)
+
+def get_image(): #this returns the image url, which we want for imagga api
+    return getRandomArtwork(randomInt(IMG_POOL))
+
+def find_dominant_color(image):
+    return
+
+
 
 #DONT ACTUALLY NEED THIS FUNCTION, JUST USE THE ONE ABOVE
 # def getactualimage(iiif, img_id, append):
