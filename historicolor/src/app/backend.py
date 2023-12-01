@@ -5,11 +5,7 @@ import math
 import os, base64
 import requests
 import random
-
-
-#THIS IS THE API STUFF FOR IMAGGA
-api_key = 'acc_ebdfbccb72814fb'
-api_secret = 'e3f77dda74964053df0bd96631db40d1'
+import json
 
 #THIS IS AN EXAMPLE TO HOW TO CALL USING THE IMAGGA API (GIVEN WE HAVE AN IMAGE FROM HARVARD API)
 # response = requests.post(
@@ -17,6 +13,10 @@ api_secret = 'e3f77dda74964053df0bd96631db40d1'
 #     auth=(api_key, api_secret), <-- api_key and api_secret in here msut match the ones above
 #     files={'image': open(image_path, 'rb')}) <-- image_path will be the variable to store harvard api call
 # print(response.json())
+
+secrets = json.load(open('apikeys.json'))
+api_key = secrets['imagga_key']
+api_secret = secrets['imagga_secret']
 
 mysql = MySQL()
 app = Flask(__name__)
