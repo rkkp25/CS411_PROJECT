@@ -15,28 +15,15 @@ const Circle = ({ color }) => (
   }} />
 );
 
-
-
-
-
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-
-      {/* HISTORICOLOR LOGO */}
+    <main className="flex min-h-screen flex-col items-center justify-between p-8">
       <div>
         <a
-          className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
+          className="pointer-events-none flex place-items-center gap-2 lg:pointer-events-auto lg:p-0"
           target="_blank"
           rel="noopener noreferrer"
         >
-          {/*
-            GETting the image from the backend
-
-          <form action='get_image' method='GET'>
-          </form>
-
-          */}
           <Image
             src="/histori_logo.svg"
             alt="Historicolor Logo"
@@ -47,15 +34,8 @@ export default function Home() {
         </a>
       </div>
 
-
-      {/* Flex Container for Image and Color Information */}
-      <div className="flex flex-row justify-center items-start w-full">
-        {/* IMAGE FROM API */}
-        <div className="image-component flex flex-col items-center">
-      {/* IMAGE FROM API */}
-      {/* this is where we would make a call to the api and then display the image
-      <div className="main-component">
-      */}
+      <div className="flex flex-row justify-center items-center w-full">
+        <div className="image-component flex flex-col items-center" style={{ marginRight: '20px' }}>
           <a
             className="pointer-events-none"
             target="_blank"
@@ -71,69 +51,50 @@ export default function Home() {
           </a>
         </div>
 
-      {/* table for the side */}
+        <div className="side-table-container" style={{ marginLeft: '20px' }}>
           <table className="side-table">
-           <tbody>
-            <tr>
-              <td>
-                <div className="centered">
-                  <div style={{ display: 'flex', justifyContent: 'center', margin: '20px 0' }}>
-                    {/* 
-                    <form action='find_dominant_color' methof='GET'>
-
-
-                        */}
-                    <Circle color={Color1} />
-                    <Circle color={Color2} />
-                    <Circle color={Color3} />
+            <tbody>
+              <tr>
+                <td>
+                  <div className="centered">
+                    <div style={{ display: 'flex', justifyContent: 'center', margin: '20px 0' }}>
+                      <Circle color={Color1} />
+                      <Circle color={Color2} />
+                      <Circle color={Color3} />
+                    </div>
                   </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <form action="calc_score" method='POST'>
+                    <p className="centered"> Put in the RGB values </p> 
 
-                <form action="calc_score" method='POST'>
-                  <p className="centered"> Put in the RGB values </p> 
+                    <label htmlFor="color1">Color 1: </label>
+                    <input type="text" id="color1" name="color1"></input>
+                    
+                    <label htmlFor="color2">Color 2: </label>
+                    <input type="text" id="color2" name="color2"></input>
 
-                  <label for="fname">Color 1: </label>
-                  <input type="text" name="myTextBox" id="values" name="values"></input>
-                  
-                  <label for="fname">Color 2: </label>
-                  <input type="text" id="values" name="values"></input>
+                    <label htmlFor="color3">Color 3: </label>
+                    <input type="text" id="color3" name="color3"></input>
 
-                  <label for="fname">Color 3: </label>
-                  <input type="text" id="values" name="values"></input>
-
-                  <input type="submit" value="Submit"></input>
-                </form>
-      
-
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <form action="calc_score" method='GET'>
-                </form>
-                Calculated Score
-              </td>
-            </tr>
-           </tbody>
+                    <input type="submit" value="Submit"></input>
+                  </form>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Calculated Score
+                </td>
+              </tr>
+            </tbody>
           </table>
-
-    </div>
-
-<<<<<<< HEAD
+        </div>
       </div>
-        <table>
-         <tbody>
-=======
 
-
-      {/*  SCOREBOARD */}
-      <table>
+      <table style={{ marginTop: '40px' }}>
         <tbody>
->>>>>>> 1a1de03c3cfe9cf98f1d64ba8c6ca13898cedafb
           <tr>
             <th>Initials</th>
             <th>Score</th>
@@ -158,13 +119,8 @@ export default function Home() {
             <td>Amongus</td>
             <td>A Score</td>
           </tr>
-<<<<<<< HEAD
-         </tbody>
-        </table>
-=======
         </tbody>
       </table>
->>>>>>> 1a1de03c3cfe9cf98f1d64ba8c6ca13898cedafb
     </main>
   )
 }
