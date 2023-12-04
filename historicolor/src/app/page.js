@@ -121,6 +121,23 @@ export default function Home() {
           </tr>
         </tbody>
       </table>
+
+      {/* Non-interactive Share Box */}
+      <div
+        style={{
+          position: 'fixed',
+          bottom: '20px',
+          right: '20px',
+          padding: '10px 15px',
+          backgroundColor: '#4CAF50',
+          color: 'white',
+          borderRadius: '5px',
+          textAlign: 'center'
+        }}
+      >
+        Share
+      </div>
+      
     </main>
   )
 }
