@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
-const Color1 = "#00FF00"; // Green
-const Color2 = "#00FF00"; // Green
-const Color3 = "#00FF00"; // Green
+const Color1 = "#1d6281"; 
+const Color2 = "#c5daad"; 
+const Color3 = "#70b8c5";
 
 const Circle = ({ color }) => (
   <div style={{
@@ -18,6 +18,41 @@ const Circle = ({ color }) => (
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-8">
+
+      <div
+        style={{
+          position: 'absolute',
+          top: '20px',
+          right: '20px',
+          padding: '10px 15px',
+          backgroundColor: '#da3d4f',
+          color: 'black',
+          borderRadius: '5px',
+        }}
+      >
+        <p className="position: centered">Login</p>
+          <form action="login" method='POST'>
+            <label htmlFor="email">Email: </label>
+            <br></br>
+            <input type="text" id="color1" name="color1"></input><br></br>
+
+            <label htmlFor="password">Password: </label>
+            <br></br>
+            <input type="text" id="color3" name="color3"></input><br></br>
+
+            <input type="submit" value="Submit"></input>
+          </form>
+      </div>
+
+      {/*
+      <script>
+      function openForm() {
+        document.getElementById("myForm").style.display = "block"}
+
+      function closeForm() {
+        document.getElementById("myForm").style.display = "none"}
+      </script>
+      */}
       <div>
         <a
           className="pointer-events-none flex place-items-center gap-2 lg:pointer-events-auto lg:p-0"
@@ -122,14 +157,15 @@ export default function Home() {
         </tbody>
       </table>
 
-      {/* Non-interactive Share Box */}
+      {/* Non-interactive Share Box 
+      */}
       <div
         style={{
           position: 'fixed',
           bottom: '20px',
           right: '20px',
           padding: '10px 15px',
-          backgroundColor: '#4CAF50',
+          backgroundColor: '#da3d4f',
           color: 'white',
           borderRadius: '5px',
           textAlign: 'center'
@@ -137,7 +173,11 @@ export default function Home() {
       >
         Share
       </div>
-      
+      {/* Non-interactive Share Box 
+      <div className="shareBox">
+        Share
+      </div>
+      */}
     </main>
   )
 }
