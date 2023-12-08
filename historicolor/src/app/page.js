@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
-const Color1 = "#00FF00"; // Green
-const Color2 = "#00FF00"; // Green
-const Color3 = "#00FF00"; // Green
+const Color1 = "#1d6281"; // Green
+const Color2 = "#c5daad"; // Green
+const Color3 = "#70b8c5"; // Green
 
 const Circle = ({ color }) => (
   <div style={{
@@ -24,6 +24,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
+          <script src="backend.py"></script>
           <Image
             src="/histori_logo.svg"
             alt="Historicolor Logo"
@@ -31,6 +32,7 @@ export default function Home() {
             height={2}
             priority
           />
+        
         </a>
       </div>
 
@@ -41,6 +43,14 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
+          <Image 
+            id="artworkImage"
+            alt="Random Artwork"
+            width={500}
+            height={2}
+            priority
+          />
+        {/*
             <Image
               src="/starry_night.jpg"
               alt="Starry Night"
@@ -48,6 +58,7 @@ export default function Home() {
               height={500}
               priority
             />
+          */}
           </a>
         </div>
 
@@ -68,7 +79,7 @@ export default function Home() {
               <tr>
                 <td>
                   <form action="calc_score" method='POST'>
-                    <p className="centered"> Put in the RGB values </p> 
+                    <p className="centered"> Put in the RGB values </p>
 
                     <label htmlFor="color1">Color 1: </label>
                     <input type="text" id="color1" name="color1"></input>
@@ -85,7 +96,9 @@ export default function Home() {
               </tr>
               <tr>
                 <td>
-                  Calculated Score
+                  <form action="calc_score" method='GET'>
+      {/* Calculated Score: " {% if data %} " */}
+                  </form>
                 </td>
               </tr>
             </tbody>
@@ -93,7 +106,7 @@ export default function Home() {
         </div>
       </div>
 
-      <table style={{ marginTop: '40px' }}>
+      <table style={{ marginTop: '40px' }}> {/* want to use display_score here */}
         <tbody>
           <tr>
             <th>Initials</th>
