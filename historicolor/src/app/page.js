@@ -1,14 +1,8 @@
 import Image from 'next/image';
 
-<<<<<<< HEAD
 const Color1 = "#1d6281"; // Green
 const Color2 = "#c5daad"; // Green
 const Color3 = "#70b8c5"; // Green
-=======
-const Color1 = "#1d6281"; 
-const Color2 = "#c5daad"; 
-const Color3 = "#70b8c5";
->>>>>>> ae49ab3f82221d35435c42f9f04e2de105eb543f
 
 const Circle = ({ color }) => (
   <div style={{
