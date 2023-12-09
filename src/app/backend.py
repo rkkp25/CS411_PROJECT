@@ -3,6 +3,7 @@ from flask import Flask, Response, request, render_template, redirect, url_for
 import mysql.connector
 import math
 import os, base64
+import mysqlx
 import requests
 import random
 import json
@@ -19,7 +20,7 @@ load_dotenv()
 IMAGGA_API = os.getenv('IMAGGA_API_KEY')
 IMAGGA_SECRET = os.getenv('IMAGGA_SECRET_KEY')
 
-mysql = MySQL()
+mysql = mysqlx()
 app = Flask(__name__)
 app.secret_key = 'holy guacamole' #CHANGE THIS TO SOMETHING SECURE
 
