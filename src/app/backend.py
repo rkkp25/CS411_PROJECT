@@ -6,6 +6,7 @@ import os, base64
 import requests
 import random
 import json
+from dotenv import load_dotenv
 
 #THIS IS AN EXAMPLE TO HOW TO CALL USING THE IMAGGA API (GIVEN WE HAVE AN IMAGE FROM HARVARD API)
 # response = requests.post(
@@ -14,9 +15,9 @@ import json
 #     files={'image': open(image_path, 'rb')}) <-- image_path will be the variable to store harvard api call
 # print(response.json())
 
-secrets = json.load(open('secrets.json'))
-api_key = secrets['imagga_key']
-api_secret = secrets['imagga_secret']
+load_dotenv()
+IMAGGA_API = os.getenv('IMAGGA_API_KEY')
+IMAGGA_SECRET = os.getenv('IMAGGA_SECRET_KEY')
 
 mysql = MySQL()
 app = Flask(__name__)
