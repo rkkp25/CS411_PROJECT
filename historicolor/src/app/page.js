@@ -59,7 +59,6 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <script src="backend.py"></script>
           <Image
             src="/histori_logo.svg"
             alt="Historicolor Logo"
@@ -78,14 +77,6 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-          <Image 
-            id="artworkImage"
-            alt="Random Artwork"
-            width={500}
-            height={2}
-            priority
-          />
-        {/*
             <Image
               src="/starry_night.jpg"
               alt="Starry Night"
@@ -93,7 +84,6 @@ export default function Home() {
               height={500}
               priority
             />
-          */}
           </a>
         </div>
 
