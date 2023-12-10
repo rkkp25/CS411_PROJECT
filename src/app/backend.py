@@ -3,9 +3,11 @@ from flask import Flask, Response, request, render_template, redirect, url_for
 import mysql.connector
 import math
 import os, base64
+import mysqlx
 import requests
 import random
 import json
+from dotenv import load_dotenv
 
 #THIS IS AN EXAMPLE TO HOW TO CALL USING THE IMAGGA API (GIVEN WE HAVE AN IMAGE FROM HARVARD API)
 # response = requests.post(
@@ -14,11 +16,11 @@ import json
 #     files={'image': open(image_path, 'rb')}) <-- image_path will be the variable to store harvard api call
 # print(response.json())
 
-secrets = json.load(open('secrets.json'))
-api_key = secrets['imagga_key']
-api_secret = secrets['imagga_secret']
+load_dotenv()
+IMAGGA_API = os.getenv('IMAGGA_API_KEY')
+IMAGGA_SECRET = os.getenv('IMAGGA_SECRET_KEY')
 
-mysql = MySQL()
+mysql = mysqlx()
 app = Flask(__name__)
 app.secret_key = 'holy guacamole' #CHANGE THIS TO SOMETHING SECURE
 
@@ -37,7 +39,9 @@ cursor = conn.cursor()
 img_append = '/full/843,/0/default.jpg' #needed for constructing the image url, pulled from chicago api documentation
 IMG_POOL = 250 #this is how many possible images the method will pull from (img # 2 will always be the same image)
 score = 0 #this is the global score variable that will eventually be stored into the database if the user chooses
+colors = None #this will hold the colors of the generated image, for frontend to display (INITIALIZED TO NONE FOR A REASON)
 
+app.route('/')
 #THIS IS TEMPLATE CODE FOR REFERENCE ON HOW TO PULL DATA FROM THE DATABASE
     # cursor = connection.cursor()
     # cursor.execute("SELECT * FROM your_table")
@@ -45,13 +49,13 @@ score = 0 #this is the global score variable that will eventually be stored into
 #THIS IS TEMPLACE CODE FOR REFERENCE ON HOW TO PULL DATA FROM THE DATABASE
 
 def calc_score(colors, actual_colors, score): #most simple function i could ever possibly write
+    assert actual_colors != None
+    assert colors != None
     for i in range(len(colors)):
         score += calc_ind_score(colors[i], actual_colors[i])
     return score
 
 def calc_ind_score(guess_color, acutal_color):
-    #not really sure how this will actually look when its fully implemented, but for now im
-    #going to assume that the inputs are held as arrays of rbg values eg: [255, 255, 255]
     score = 0
     assert len(guess_color) == len(actual_color)
     for i in range(len(guess_color)):
@@ -105,9 +109,22 @@ def getRandomArtwork(seed, fields=["id", "title", "artist_id", "artist_title", "
 def get_image(): #this returns the image url, which we want for imagga api
     return getRandomArtwork(randomInt(IMG_POOL))
 
-def find_dominant_color(image):
-    return
+def getColorFromArtwork(image_url):
+    try:
+        response = requests.get(
+            'https://api.imagga.com/v2/colors?image_url=%s' % image_url,
+            auth=(IMAGGA_API, IMAGGA_SECRET),)
+        result = response.json()
+        if result['status']['type'] != 'success':
+            print('API response was not successful, trying again...')
+            return getColorFromArtwork(get_image())
+        else:
+            return [result['result']['colors']['image_colors'][i]['html_code'] for i in range(3)]
+    except Exception as error:
+        print("Error:", error)
 
+
+colors = getColorFromArtwork(get_image())
 
 
 #DONT ACTUALLY NEED THIS FUNCTION, JUST USE THE ONE ABOVE
@@ -121,8 +138,6 @@ def find_dominant_color(image):
 #     except Exception as error:
 #         print("Error:", error)
 
-image= getRandomArtwork(randomInt(100))
-print(image)
 
 
     
