@@ -14,6 +14,8 @@ const Circle = ({ color }) => (
   }} />
 );
 
+//trying smthng
+
 export default function Home() {
 
   // State for storing artwork URL
