@@ -77,6 +77,17 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
+
+            {/* this should get the image_url from get_image and then we use that url as the source for the image but it's not working */}
+            <script> image_url = get_image; </script>
+            <Image 
+              src="/image_url" 
+              alt="Random Artwork"
+              width={500}
+              height={500}
+              priority
+      />
+
             <Image
               src="/starry_night.jpg"
               alt="Starry Night"
