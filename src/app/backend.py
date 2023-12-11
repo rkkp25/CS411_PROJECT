@@ -21,6 +21,8 @@ from dotenv import load_dotenv
 load_dotenv()
 IMAGGA_API = os.getenv('IMAGGA_API_KEY')
 IMAGGA_SECRET = os.getenv('IMAGGA_SECRET_KEY')
+GOOGLEAUTH = os.getenv('googleauthid')
+GOOGLESECRET = os.getenv('googleauthsecret')
 
 #mysql = mysqlx()
 # Create a client with a connection URL or a dictionary

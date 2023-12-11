@@ -2,6 +2,11 @@
 
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+import LogInButton from './login.js';
+import LogOutButton from './logout.js';
+import {gapi} from 'gapi-script';
+
+const clientId = '1000000000000-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.apps.googleusercontent.com';
 
 const Circle = ({ color }) => (
   <div style={{
@@ -17,6 +22,18 @@ const Circle = ({ color }) => (
 //trying smthng
 
 export default function Home() {
+
+
+  useEffect(() => {
+    function start(){
+      gapi.client.init({
+        clientId: clientId,
+        scope: ''
+      })
+    };
+
+    gapi.load('client:auth2', start);
+  });
 
   // State for storing artwork URL
   const [artworkUrl, setArtworkUrl] = useState('');
@@ -98,7 +115,6 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-8">
-
       <div
         style={{
           position: 'absolute',
@@ -110,18 +126,11 @@ export default function Home() {
           borderRadius: '5px',
         }}
       >
-        <p className="position: centered">Login</p>
-          <form action="login" method='POST'>
-            <label htmlFor="email">Email: </label>
-            <br></br>
-            <input type="text" id="color1" name="color1"></input><br></br>
-
-            <label htmlFor="password">Password: </label>
-            <br></br>
-            <input type="text" id="color3" name="color3"></input><br></br>
-
-            <input type="submit" value="Submit"></input>
-          </form>
+        <p className="position: centered">Login With Google</p>
+        <div className= "position: centered">
+        <LogInButton />
+        {/* <LogOutButton /> */}
+      </div>
       </div>
 
       <div>
