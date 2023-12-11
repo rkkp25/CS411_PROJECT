@@ -31,8 +31,8 @@ GOOGLESECRET = os.getenv('googleauthsecret')
 #session = client.get_session()
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for your Flask app
-CORS(access_control_allow_origin='*')
+#CORS(app)  # Enable CORS for your Flask app
+CORS(app, resources={r"/api/*": {"origins": "*", "allow_headers": ["Content-Type", "Authorization"]}})
 app.secret_key = 'holy guacamole' #CHANGE THIS TO SOMETHING SECURE
 
 #these are for database credentials
@@ -62,14 +62,39 @@ def historicolor():
     # result = cursor.fetchall()
 #THIS IS TEMPLACE CODE FOR REFERENCE ON HOW TO PULL DATA FROM THE DATABASE
 
+"""
 def calc_score(colors, actual_colors, score): #most simple function i could ever possibly write
     assert actual_colors != None
     assert colors != None
     for i in range(len(colors)):
         score += calc_ind_score(colors[i], actual_colors[i])
     return score
+"""
 
-def calc_ind_score(guess_color, acutal_color): #this function is comoplaining about a nonexistent variable like no shit girl
+def hex_to_rgb(hex_color):
+    """
+    Convert a hex color string to an RGB tuple.
+    """
+    hex_color = hex_color.lstrip('#')
+    hlen = len(hex_color)
+    return tuple(int(hex_color[i:i+hlen//3], 16) for i in range(0, hlen, hlen//3))
+
+def calc_score(guess_colors, actual_colors, score):
+    """
+    Mithat is trying something
+    """
+    assert actual_colors is not None
+    assert guess_colors is not None
+
+    rgb_guess_colors = guess_colors #the user's guessed colors are already in rgb format
+    rgb_actual_colors = [hex_to_rgb(color) for color in actual_colors] #the api returns the color in hex format so we need to change it to rgb
+
+    for i in range(len(rgb_guess_colors)):
+        score += calc_ind_score(rgb_guess_colors[i], rgb_actual_colors[i])
+
+    return score
+
+def calc_ind_score(guess_color, actual_color):
     score = 0
     assert len(guess_color) == len(actual_color)
     for i in range(len(guess_color)):
@@ -171,14 +196,18 @@ def api_getColorFromArtwork():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
     
-@app.route('/api/getTopColors', methods=['GET'])
-def api_getTopColors():
-    try:
-        assert(imgurl != None)
-        colors = getColorFromArtwork(imgurl)
-        return jsonify({"topColors": colors[:3]})  # Return only the top 3 colors
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+@app.route('/api/submitColorGuesses', methods=['POST'])
+def submit_color_guesses():
+    data = request.json
+    guessed_colors = data.get('guesses', [])
+    actual_colors = data.get('actualColors', [])
+    
+    initial_score = 0  # Initialize score
+    final_score = calc_score(guessed_colors, actual_colors, initial_score)
+    
+    # You can further process the score here (e.g., store in database)
+    print("Final Score:", final_score)
+    return jsonify({"score": final_score}), 200
 
     
 # Start the Flask app
