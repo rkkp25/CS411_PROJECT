@@ -21,6 +21,8 @@ from dotenv import load_dotenv
 load_dotenv()
 IMAGGA_API = os.getenv('IMAGGA_API_KEY')
 IMAGGA_SECRET = os.getenv('IMAGGA_SECRET_KEY')
+GOOGLEAUTH = os.getenv('googleauthid')
+GOOGLESECRET = os.getenv('googleauthsecret')
 
 #mysql = mysqlx()
 # Create a client with a connection URL or a dictionary
@@ -30,6 +32,7 @@ IMAGGA_SECRET = os.getenv('IMAGGA_SECRET_KEY')
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for your Flask app
+CORS(access_control_allow_origin='*')
 app.secret_key = 'holy guacamole' #CHANGE THIS TO SOMETHING SECURE
 
 #these are for database credentials
