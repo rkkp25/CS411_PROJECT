@@ -48,6 +48,7 @@ img_append = '/full/843,/0/default.jpg' #needed for constructing the image url, 
 IMG_POOL = 250 #this is how many possible images the method will pull from (img # 2 will always be the same image)
 score = 0 #this is the global score variable that will eventually be stored into the database if the user chooses
 colors = None #this will hold the colors of the generated image, for frontend to display (INITIALIZED TO NONE FOR A REASON)
+imgurl = None
 
 app.route('/')
 #THIS IS TEMPLATE CODE FOR REFERENCE ON HOW TO PULL DATA FROM THE DATABASE
@@ -151,23 +152,16 @@ def api_getRandomArtwork():
     seed = randomInt(IMG_POOL)
     try:
         artwork = getRandomArtwork(seed)
-        return jsonify({"artworkUrl": artwork})
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-@app.route('/api/getImage', methods=['GET'])
-def api_getImage():
-    try:
-        image = get_image()
-        return jsonify({"imageUrl": image})
+        colors = getColorFromArtwork(artwork)
+        return jsonify({"artworkUrl": artwork, "topColors": colors[:3]})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 @app.route('/api/getColorFromArtwork', methods=['GET'])
 def api_getColorFromArtwork():
     try:
-        image_url = get_image()
-        colors = getColorFromArtwork(image_url)
+        imgurl = get_image()
+        colors = getColorFromArtwork(imgurl)
         return jsonify({"colors": colors})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -175,8 +169,8 @@ def api_getColorFromArtwork():
 @app.route('/api/getTopColors', methods=['GET'])
 def api_getTopColors():
     try:
-        image_url = get_image()  # Or fetch the image URL based on some logic
-        colors = getColorFromArtwork(image_url)
+        assert(imgurl != None)
+        colors = getColorFromArtwork(imgurl)
         return jsonify({"topColors": colors[:3]})  # Return only the top 3 colors
     except Exception as e:
         return jsonify({"error": str(e)}), 500
