@@ -21,28 +21,72 @@ export default function Home() {
   // State for storing artwork URL
   const [artworkUrl, setArtworkUrl] = useState('');
   const [topColors, setTopColors] = useState([]);
+  const [colorGuesses, setColorGuesses] = useState({});
+  const [calculatedScore, setCalculatedScore] = useState(null);
+  const [actualColors, setActualColors] = useState([]); // Store actual colors
+
+  const parseRGBInput = (rgbString) => {
+    return rgbString.split(',').map(num => parseInt(num.trim(), 10));
+  };
 
   const fetchArtwork = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:5000/api/getRandomArtwork', { method: 'GET', mode: 'cors' }); // Adjust this URL to your API endpoint
+      const response = await fetch('http://127.0.0.1:5000/api/getRandomArtwork', { method: 'GET', mode: 'cors' });
       const data = await response.json();
-      console.log(data)
-      setArtworkUrl(data.artworkUrl); // Assuming the response contains the URL in 'artworkUrl' field
-      setTopColors(data.topColors);
+      setArtworkUrl(data.artworkUrl);
+    
+      // Check if topColors is an array before setting it
+      if (Array.isArray(data.topColors)) {
+        setTopColors(data.topColors);
+        setActualColors(data.topColors); // Store the actual colors here
+      } else {
+        setTopColors([]);
+        setActualColors([]); // Reset actualColors as well
+      }
     } catch (error) {
       console.error('Error fetching artwork:', error);
+      setTopColors([]); // Set to empty array in case of error
+      setActualColors([]); // Reset actualColors as well
     }
   };
 
-  // const fetchTopColors = async () => {
-  //   try {
-  //     const response = await fetch('http://127.0.0.1:5000/api/getColorFromArtwork');
-  //     const data = await response.json();
-  //     setTopColors(data.topColors);
-  //   } catch (error) {
-  //     console.error('Error fetching top colors:', error);
-  //   }
-  // };
+  const handleColorGuessChange = (index, value) => {
+    setColorGuesses(prev => ({ ...prev, [index]: value }));
+  };
+
+  const submitColorGuesses = async (event) => {
+    event.preventDefault();
+    try {
+      const payload = {
+        guesses: Object.values(colorGuesses).map(parseRGBInput),
+        actualColors: actualColors.map(parseRGBInput), // Include actual colors in the payload
+      };
+      const response = await fetch('http://127.0.0.1:5000/api/submitColorGuesses', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        mode: 'cors',
+        body: JSON.stringify(payload),
+      });
+      const data = await response.json();
+      // Process the response, e.g., display the calculated score
+    } catch (error) {
+      console.error('Error submitting color guesses:', error);
+    }
+  };
+
+
+  {topColors?.map((color, index) => (
+    <input
+      key={index}
+      type="text"
+      placeholder={`Guess for color ${index + 1}`}
+      value={colorGuesses[color] || ''}
+      onChange={e => handleColorGuessChange(color, e.target.value)}
+    />
+  ))}
+  <button type="submit">Submit Guesses</button>
 
   // Fetch artwork on component mount
   useEffect(() => {
@@ -131,6 +175,24 @@ export default function Home() {
           ))}
         </div>
       </div>
+
+      <form onSubmit={submitColorGuesses}>
+        {topColors.map((color, index) => (
+          <input
+            key={index}
+            type="text"
+            placeholder={`Guess for color ${index + 1}`}
+            value={colorGuesses[index] || ''}
+            onChange={e => handleColorGuessChange(index, e.target.value)}
+          />
+        ))}
+        <button type="submit">Submit Guesses</button>
+      </form>
+
+      {calculatedScore !== null && (
+        <p>Your calculated score is: {calculatedScore}</p>
+      )}
+
 
 
       /*
