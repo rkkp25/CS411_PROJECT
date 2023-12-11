@@ -42,6 +42,8 @@ score = 0 #this is the global score variable that will eventually be stored into
 colors = None #this will hold the colors of the generated image, for frontend to display (INITIALIZED TO NONE FOR A REASON)
 
 app.route('/')
+def historicolor():
+    return render_template('page.js')
 #THIS IS TEMPLATE CODE FOR REFERENCE ON HOW TO PULL DATA FROM THE DATABASE
     # cursor = connection.cursor()
     # cursor.execute("SELECT * FROM your_table")
@@ -55,7 +57,7 @@ def calc_score(colors, actual_colors, score): #most simple function i could ever
         score += calc_ind_score(colors[i], actual_colors[i])
     return score
 
-def calc_ind_score(guess_color, acutal_color):
+def calc_ind_score(guess_color, acutal_color): #this function is comoplaining about a nonexistent variable like no shit girl
     score = 0
     assert len(guess_color) == len(actual_color)
     for i in range(len(guess_color)):
