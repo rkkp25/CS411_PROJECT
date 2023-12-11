@@ -174,6 +174,16 @@ def api_getColorFromArtwork():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
     
+@app.route('/api/getTopColors', methods=['GET'])
+def api_getTopColors():
+    try:
+        image_url = get_image()  # Or fetch the image URL based on some logic
+        colors = getColorFromArtwork(image_url)
+        return jsonify({"topColors": colors[:3]})  # Return only the top 3 colors
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+    
 # Start the Flask app
 if __name__ == '__main__':
     app.run(debug=True)  # Set debug to False in a production environment

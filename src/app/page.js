@@ -3,10 +3,6 @@
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
-const Color1 = "#1d6281"; // Green
-const Color2 = "#c5daad"; // Green
-const Color3 = "#70b8c5"; // Green
-
 const Circle = ({ color }) => (
   <div style={{
     width: '50px',
@@ -22,6 +18,7 @@ export default function Home() {
 
   // State for storing artwork URL
   const [artworkUrl, setArtworkUrl] = useState('');
+  const [topColors, setTopColors] = useState([]);
 
   const fetchArtwork = async () => {
     try {
@@ -33,10 +30,23 @@ export default function Home() {
     }
   };
 
+  const fetchTopColors = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:5000/api/getTopColors');
+      const data = await response.json();
+      setTopColors(data.topColors);
+    } catch (error) {
+      console.error('Error fetching top colors:', error);
+    }
+  };
+
   // Fetch artwork on component mount
   useEffect(() => {
     fetchArtwork();
+    fetchTopColors();
   }, []);
+
+
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-8">
@@ -124,48 +134,21 @@ export default function Home() {
         </div>
 
         <div className="side-table-container" style={{ marginLeft: '20px' }}>
-          <table className="side-table">
-            <tbody>
-              <tr>
-                <td>
-                  <div className="centered">
-                    <div style={{ display: 'flex', justifyContent: 'center', margin: '20px 0' }}>
-                      <Circle color={Color1} />
-                      <Circle color={Color2} />
-                      <Circle color={Color3} />
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <form action="calc_score" method='POST'>
-                    <p className="centered"> Put in the RGB values </p>
-
-                    <label htmlFor="color1">Color 1: </label>
-                    <input type="text" id="color1" name="color1"></input>
-                    
-                    <label htmlFor="color2">Color 2: </label>
-                    <input type="text" id="color2" name="color2"></input>
-
-                    <label htmlFor="color3">Color 3: </label>
-                    <input type="text" id="color3" name="color3"></input>
-
-                    <input type="submit" value="Submit"></input>
-                  </form>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <form action="calc_score" method='GET'>
-      {/* Calculated Score: " {% if data %} " */}
-                  </form>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          {topColors.map((color, index) => (
+            <div key={index} style={{
+              width: '50px',
+              height: '50px',
+              backgroundColor: `#${color}`,
+              borderRadius: '50%',
+              display: 'inline-block',
+              margin: '10px'
+            }} />
+          ))}
         </div>
       </div>
+
+
+      /*
 
       <table style={{ marginTop: '40px' }}> {/* want to use display_score here */}
         <tbody>
