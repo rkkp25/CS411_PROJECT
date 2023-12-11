@@ -24,26 +24,28 @@ export default function Home() {
     try {
       const response = await fetch('http://127.0.0.1:5000/api/getRandomArtwork', { method: 'GET', mode: 'cors' }); // Adjust this URL to your API endpoint
       const data = await response.json();
+      console.log(data)
       setArtworkUrl(data.artworkUrl); // Assuming the response contains the URL in 'artworkUrl' field
+      setTopColors(data.topColors);
     } catch (error) {
       console.error('Error fetching artwork:', error);
     }
   };
 
-  const fetchTopColors = async () => {
-    try {
-      const response = await fetch('http://127.0.0.1:5000/api/getTopColors');
-      const data = await response.json();
-      setTopColors(data.topColors);
-    } catch (error) {
-      console.error('Error fetching top colors:', error);
-    }
-  };
+  // const fetchTopColors = async () => {
+  //   try {
+  //     const response = await fetch('http://127.0.0.1:5000/api/getColorFromArtwork');
+  //     const data = await response.json();
+  //     setTopColors(data.topColors);
+  //   } catch (error) {
+  //     console.error('Error fetching top colors:', error);
+  //   }
+  // };
 
   // Fetch artwork on component mount
   useEffect(() => {
     fetchArtwork();
-    fetchTopColors();
+    // fetchTopColors();
   }, []);
 
 
@@ -134,11 +136,11 @@ export default function Home() {
         </div>
 
         <div className="side-table-container" style={{ marginLeft: '20px' }}>
-          {topColors.map((color, index) => (
+          {topColors && topColors.map((color, index) => (
             <div key={index} style={{
               width: '50px',
               height: '50px',
-              backgroundColor: `#${color}`,
+              backgroundColor: color,
               borderRadius: '50%',
               display: 'inline-block',
               margin: '10px'
