@@ -1,5 +1,6 @@
 import flask
-from flask import Flask, Response, request, render_template, redirect, url_for
+from flask import Flask, Response, jsonify, request, render_template, redirect, url_for
+from flask_cors import CORS, cross_origin  # Import CORS
 import mysql.connector
 import math
 import os, base64
@@ -16,12 +17,19 @@ from dotenv import load_dotenv
 #     files={'image': open(image_path, 'rb')}) <-- image_path will be the variable to store harvard api call
 # print(response.json())
 
+
 load_dotenv()
 IMAGGA_API = os.getenv('IMAGGA_API_KEY')
 IMAGGA_SECRET = os.getenv('IMAGGA_SECRET_KEY')
 
-mysql = mysqlx()
+#mysql = mysqlx()
+# Create a client with a connection URL or a dictionary
+#client = mysqlx.get_client({"host": "localhost", "user": "root", "password": "your_password", "schema": "your_schema"}, pooling=True)
+# Get a session from the client
+#session = client.get_session()
+
 app = Flask(__name__)
+CORS(app)  # Enable CORS for your Flask app
 app.secret_key = 'holy guacamole' #CHANGE THIS TO SOMETHING SECURE
 
 #these are for database credentials
@@ -29,10 +37,10 @@ app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'outthewazoo'
 app.config['MYSQL_DATABASE_DB'] = 'historicolor'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-mysql.init_app(app)
+##mysql.init_app(app)
 
-conn = mysql.connect()
-cursor = conn.cursor()
+##conn = mysql.connect()
+##cursor = conn.cursor()
 
 
 #GLOBAL VARIABLES FOR WHATEVER
@@ -124,7 +132,7 @@ def getColorFromArtwork(image_url):
         print("Error:", error)
 
 
-colors = getColorFromArtwork(get_image())
+# colors = getColorFromArtwork(get_image())
 
 
 #DONT ACTUALLY NEED THIS FUNCTION, JUST USE THE ONE ABOVE
@@ -137,6 +145,37 @@ colors = getColorFromArtwork(get_image())
 #         return image
 #     except Exception as error:
 #         print("Error:", error)
+
+@app.route('/api/getRandomArtwork', methods=['GET'])
+def api_getRandomArtwork():
+    seed = randomInt(IMG_POOL)
+    try:
+        artwork = getRandomArtwork(seed)
+        return jsonify({"artworkUrl": artwork})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/api/getImage', methods=['GET'])
+def api_getImage():
+    try:
+        image = get_image()
+        return jsonify({"imageUrl": image})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+@app.route('/api/getColorFromArtwork', methods=['GET'])
+def api_getColorFromArtwork():
+    try:
+        image_url = get_image()
+        colors = getColorFromArtwork(image_url)
+        return jsonify({"colors": colors})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
+# Start the Flask app
+if __name__ == '__main__':
+    app.run(debug=True)  # Set debug to False in a production environment
+
 
 
 
