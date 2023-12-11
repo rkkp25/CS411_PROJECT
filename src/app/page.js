@@ -1,4 +1,7 @@
+"use client";
+
 import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
 
 const Color1 = "#1d6281"; // Green
 const Color2 = "#c5daad"; // Green
@@ -16,6 +19,25 @@ const Circle = ({ color }) => (
 );
 
 export default function Home() {
+
+  // State for storing artwork URL
+  const [artworkUrl, setArtworkUrl] = useState('');
+
+  const fetchArtwork = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:5000/api/getRandomArtwork', { method: 'GET', mode: 'cors' }); // Adjust this URL to your API endpoint
+      const data = await response.json();
+      setArtworkUrl(data.artworkUrl); // Assuming the response contains the URL in 'artworkUrl' field
+    } catch (error) {
+      console.error('Error fetching artwork:', error);
+    }
+  };
+
+  // Fetch artwork on component mount
+  useEffect(() => {
+    fetchArtwork();
+  }, []);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-8">
 
@@ -44,22 +66,13 @@ export default function Home() {
           </form>
       </div>
 
-      {/*
-      <script>
-      function openForm() {
-        document.getElementById("myForm").style.display = "block"}
-
-      function closeForm() {
-        document.getElementById("myForm").style.display = "none"}
-      </script>
-      */}
       <div>
         <a
           className="pointer-events-none flex place-items-center gap-2 lg:pointer-events-auto lg:p-0"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <script src="backend.py"></script>
+          {/* <script src="/backend.py"></script> */}
           <Image
             src="/histori_logo.svg"
             alt="Historicolor Logo"
@@ -78,22 +91,16 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-          <Image 
-            id="artworkImage"
-            alt="Random Artwork"
-            width={500}
-            height={2}
-            priority
-          />
-        {/*
-            <Image
-              src="/starry_night.jpg"
-              alt="Starry Night"
-              width={500}
-              height={500}
-              priority
-            />
-          */}
+          {artworkUrl && (
+              <Image 
+                id="artworkImage"
+                src={artworkUrl}
+                alt="Random Artwork"
+                width={500}
+                height={500}
+                priority
+              />
+            )}
           </a>
         </div>
 
