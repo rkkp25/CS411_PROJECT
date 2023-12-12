@@ -143,6 +143,7 @@ export default function Home() {
 
 
 
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-8">
       <div
@@ -159,7 +160,9 @@ export default function Home() {
         <p className="position: centered">Login With Google</p>
         <div className="position: centered">
         <LogInButton />
-        {/* <LogOutButton /> */}
+      {/*
+        <LogOutButton />
+        */}
       </div>
       </div>
 
