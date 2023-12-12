@@ -40,6 +40,7 @@ export default function Home() {
   const [colorGuesses, setColorGuesses] = useState({});
   const [calculatedScore, setCalculatedScore] = useState(null);
   const [actualColors, setActualColors] = useState([]); // Store actual colors
+  const [userName, setUserName] = useState('');
 
   const parseRGBInput = (rgbString) => {
     return rgbString.split(',').map(num => parseInt(num.trim(), 10));
@@ -229,7 +230,22 @@ export default function Home() {
 
     {/* ACCESS THE DATABASE AND FILL OUT THE CHART */}
 
-
+    <form action="http://127.0.0.1:5000/submit-score" method="POST">
+      <input
+        type="text"
+        name="userName"
+        placeholder="Enter your name"
+        value={userName}
+        onChange={e => setUserName(e.target.value)}
+      />
+      <input
+        type="hidden"
+        name="score"
+        value={calculatedScore}
+      />
+      {/* ... color guess inputs ... */}
+      <button type="submit">Submit Score</button>
+    </form>
 
 
 

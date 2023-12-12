@@ -40,10 +40,10 @@ app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_PASSWORD'] = 'outthewazoo'
 app.config['MYSQL_DATABASE_DB'] = 'historicolor'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
-##mysql.init_app(app)
+#mysql.init_app(app)
 
-##conn = mysql.connect()
-##cursor = conn.cursor()
+conn = mysql.connect()
+cursor = conn.cursor()
 
 
 #GLOBAL VARIABLES FOR WHATEVER
@@ -126,6 +126,7 @@ def display_scores():
 
 def save_user_score(name, score):
     assert type(name) == str
+    score = float(score)  # Convert score to integer if it's coming as a string
     cursor = conn.cursor()
     cursor.execute("INSERT INTO scores (name, score) VALUES (%s, %s)", (name, score))
     conn.commit()
@@ -211,6 +212,13 @@ def submit_color_guesses():
     print("Final Score:", final_score)
     return jsonify({"score": final_score}), 200
 
+@app.route('/submit-score', methods=['POST'])
+def handle_score_submission():
+    name = request.form['userName']
+    score = request.form['score']
+    save_user_score(name, score)
+    # Redirect or return a response as needed
+    return 'Score submitted successfully'
     
 # Start the Flask app
 if __name__ == '__main__':
