@@ -70,6 +70,7 @@ export default function Home() {
     setColorGuesses(prev => ({ ...prev, [index]: value }));
   };
 
+  {/*
   const submitColorGuesses = async (event) => {
     event.preventDefault();
     try {
@@ -91,7 +92,30 @@ export default function Home() {
       console.error('Error submitting color guesses:', error);
     }
   };
+  */}
+   
+    const calculateScore = () => {
+      const hexToRgb = hex => {
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        return [r, g, b];
+      };
 
+      let totalDifference = 0;
+      const maxDifferencePerColor = 255 * 3; // Maximum difference per color
+
+      actualColors.forEach((color, index) => {
+        const actualRgb = hexToRgb(color);
+        const guessRgb = hexToRgb(colorGuesses[index] || '#000000');
+        totalDifference += actualRgb.reduce((acc, val, i) => acc + Math.abs(val - guessRgb[i]), 0);
+      });
+
+      const totalMaxDifference = maxDifferencePerColor * actualColors.length; // Maximum possible difference for all colors
+      const percentageScore = (1 - (totalDifference / totalMaxDifference)) * 100;
+
+      setCalculatedScore(Math.round(percentageScore * 100) / 100); // Round to two decimal places
+    };
 
   {topColors?.map((color, index) => (
     <input
@@ -184,6 +208,11 @@ export default function Home() {
         </div>
       </div><br></br>
       <p> Type in the hashtag and the following 6 hex digits for each color below! </p><br></br>
+
+
+
+
+  {/*
       <form onSubmit={submitColorGuesses}>
         {topColors.map((color, index) => (
           <input
@@ -196,6 +225,22 @@ export default function Home() {
           />
         ))}
         <button type="submit">Submit Guesses</button>
+      </form>
+
+  */}
+
+    <form onSubmit={(e) => { e.preventDefault(); calculateScore(); }}>
+        {topColors.map((color, index) => (
+          <input
+            key={index}
+            type="text"
+            maxlength="7"
+            placeholder={`Guess for color ${index + 1}`}
+            value={colorGuesses[index] || ''}
+            onChange={e => handleColorGuessChange(index, e.target.value)}
+          />
+        ))}
+        <button type="submit">Calculate Score</button>
       </form>
 
       {calculatedScore !== null && (
