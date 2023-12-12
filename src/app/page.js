@@ -184,14 +184,13 @@ export default function Home() {
           ))}
         </div>
       </div><br></br>
-      <p> Insert the 6 hex digits for each color below! </p><br></br>
-
+      <p> Type in the hashtag and the following 6 hex digits for each color below! </p><br></br>
       <form onSubmit={submitColorGuesses}>
         {topColors.map((color, index) => (
           <input
             key={index}
             type="text"
-            maxlength="6"
+            maxlength="7"
             placeholder={`Guess for color ${index + 1}`}
             value={colorGuesses[index] || ''}
             onChange={e => handleColorGuessChange(index, e.target.value)}
