@@ -208,28 +208,8 @@ export default function Home() {
         </div>
       </div><br></br>
       <p> Type in the hashtag and the following 6 hex digits for each color below! </p><br></br>
-
-
-
-
-  {/*
-      <form onSubmit={submitColorGuesses}>
-        {topColors.map((color, index) => (
-          <input
-            key={index}
-            type="text"
-            maxLength="7"
-            placeholder={`Guess for color ${index + 1}`}
-            value={colorGuesses[index] || ''}
-            onChange={e => handleColorGuessChange(index, e.target.value)}
-          />
-        ))}
-        <button type="submit">Submit Guesses</button>
-      </form>
-
-  */}
-
-    <form onSubmit={(e) => { e.preventDefault(); calculateScore(); }}>
+    
+      <form onSubmit={(e) => { e.preventDefault(); calculateScore(); }}>
         {topColors.map((color, index) => (
           <input
             key={index}
@@ -241,11 +221,30 @@ export default function Home() {
           />
         ))}
         <button type="submit">Calculate Score</button>
-      </form>
+      </form><br></br>
 
       {calculatedScore !== null && (
         <p>Your calculated score is: {calculatedScore}</p>
       )}
+
+    {/* ACCESS THE DATABASE AND FILL OUT THE CHART */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       <table style={{ marginTop: '40px' }}>{/* want to use display_score here */}
         <tbody>
