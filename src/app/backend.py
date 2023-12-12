@@ -75,11 +75,23 @@ def hex_to_rgb(hex_color):
     # Convert a hex color string to an RGB tuple.
     # 
     hex_color = hex_color[:1]
+
+#def calc_score(colors, actual_colors, score): #most simple function i could ever possibly write
+ #   assert actual_colors != None
+ #   assert colors != None
+ #   for i in range(len(colors)):
+ #       score += calc_ind_score(colors[i], actual_colors[i])
+ #   return score
+
+def hex_to_rgb(hex_color):
+    #   Convert a hex color string to an RGB tuple.
+    hex_color = hex_color.lstrip('#')
     hlen = len(hex_color)
     return tuple(int(hex_color[i:i+hlen//3], 16) for i in range(0, hlen, hlen//3))
 
 def calc_score(guess_colors, actual_colors, score):
     # Mithat is trying something
+
     assert actual_colors is not None
     assert guess_colors is not None
 
