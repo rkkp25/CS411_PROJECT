@@ -127,7 +127,7 @@ export default function Home() {
         }}
       >
         <p className="position: centered">Login With Google</p>
-        <div className= "position: centered">
+        <div className="position: centered">
         <LogInButton />
         {/* <LogOutButton /> */}
       </div>
@@ -183,7 +183,7 @@ export default function Home() {
             }} />
           ))}
         </div>
-      </div>
+      </div><br></br>
 
       <form onSubmit={submitColorGuesses}>
         {topColors.map((color, index) => (
@@ -201,10 +201,6 @@ export default function Home() {
       {calculatedScore !== null && (
         <p>Your calculated score is: {calculatedScore}</p>
       )}
-
-
-
-      /*
 
       <table style={{ marginTop: '40px' }}> {/* want to use display_score here */}
         <tbody>
@@ -227,10 +223,6 @@ export default function Home() {
           <tr>
             <td>Mithat</td>
             <td>M Score</td>
-          </tr>
-          <tr>
-            <td>Amongus</td>
-            <td>A Score</td>
           </tr>
         </tbody>
       </table>
