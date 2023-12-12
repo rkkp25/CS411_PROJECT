@@ -31,8 +31,8 @@ GOOGLESECRET = os.getenv('googleauthsecret')
 #session = client.get_session()
 
 app = Flask(__name__)
-#CORS(app)  # Enable CORS for your Flask app
-CORS(app, resources={r"/api/*": {"origins": "*", "allow_headers": ["Content-Type", "Authorization"]}})
+CORS(app)  # Enable CORS for your Flask app
+CORS(app, resources={r"/api/*": {"origins": "*", "allow_headers": ["Content-Type", "Authorization"], }})
 app.secret_key = 'holy guacamole' #CHANGE THIS TO SOMETHING SECURE
 
 #these are for database credentials
