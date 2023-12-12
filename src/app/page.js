@@ -203,7 +203,7 @@ export default function Home() {
         <p>Your calculated score is: {calculatedScore}</p>
       )}
 
-      <table style={{ marginTop: '40px' }}> {/* want to use display_score here */}
+      <table style={{ marginTop: '40px' }}>{/* want to use display_score here */}
         <tbody>
           <tr>
             <th>Initials</th>

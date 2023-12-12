@@ -78,7 +78,7 @@ def historicolor():
 
 def hex_to_rgb(hex_color):
     #   Convert a hex color string to an RGB tuple.
-    hex_color = hex_color[:1]
+    hex_color = hex_color[1:]
     hlen = len(hex_color)
     return tuple(int(hex_color[i:i+hlen//3], 16) for i in range(0, hlen, hlen//3))
 
