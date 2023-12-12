@@ -4,6 +4,9 @@ from flask_cors import CORS, cross_origin  # Import CORS
 import mysql.connector
 import math
 import os, base64
+#from flask_mysqldb import MySQL
+#from flaskext.mysql import MySQL
+#from flask import _app_ctx_stack
 import mysqlx
 import requests
 import random
@@ -30,21 +33,22 @@ GOOGLESECRET = os.getenv('googleauthsecret')
 # Get a session from the client
 #session = client.get_session()
 
+#mysql = MySQL()
 app = Flask(__name__)
 CORS(app)  # Enable CORS for your Flask app
 CORS(app, resources={r"/api/*": {"origins": "*", "allow_headers": ["Content-Type", "Authorization"], }})
-app.secret_key = 'holy guacamole' #CHANGE THIS TO SOMETHING SECURE
+#app.secret_key = 'holy guacamole' #CHANGE THIS TO SOMETHING SECURE
 
 #these are for database credentials
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'outthewazoo'
+app.config['MYSQL_DATABASE_PASSWORD'] = 'sillybean778'
 app.config['MYSQL_DATABASE_DB'] = 'historicolor'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 #mysql.init_app(app)
 
-conn = mysql.connect()
-cursor = conn.cursor()
-
+#conn = mysql.connect()
+#cursor = conn.cursor()
+#cursor = mysql.connection.cursor()
 
 #GLOBAL VARIABLES FOR WHATEVER
 img_append = '/full/843,/0/default.jpg' #needed for constructing the image url, pulled from chicago api documentation

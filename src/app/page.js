@@ -41,6 +41,12 @@ export default function Home() {
   const [calculatedScore, setCalculatedScore] = useState(null);
   const [actualColors, setActualColors] = useState([]); // Store actual colors
   const [userName, setUserName] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e) => {
+      e.preventDefault();
+      setSubmitted(true);
+  };
 
   const parseRGBInput = (rgbString) => {
     return rgbString.split(',').map(num => parseInt(num.trim(), 10));
@@ -227,40 +233,26 @@ export default function Home() {
       {calculatedScore !== null && (
         <p>Your calculated score is: {calculatedScore}</p>
       )}
-
+    <br></br>
     {/* ACCESS THE DATABASE AND FILL OUT THE CHART */}
 
-    <form action="http://127.0.0.1:5000/submit-score" method="POST">
-      <input
-        type="text"
-        name="userName"
-        placeholder="Enter your name"
-        value={userName}
-        onChange={e => setUserName(e.target.value)}
-      />
-      <input
-        type="hidden"
-        name="score"
-        value={calculatedScore}
-      />
-      {/* ... color guess inputs ... */}
-      <button type="submit">Submit Score</button>
-    </form>
+      <form action="#" method="POST" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="userName"
+          placeholder="Enter your name"
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
+        />
+        <input
+          type="hidden"
+          name="score"
+          value={calculatedScore}
+        />
+        <button type="submit">Submit Score</button>
+      </form>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      {submitted && <p>Score Saved!</p>}
 
       <table style={{ marginTop: '40px' }}>{/* want to use display_score here */}
         <tbody>
@@ -269,20 +261,20 @@ export default function Home() {
             <th>Score</th>
           </tr>
           <tr>
-            <td>Kris</td>
-            <td>K Score</td>
+            <td>God</td>
+            <td>97.73</td>
           </tr>
           <tr>
-            <td>Valentina</td>
-            <td>V Score</td>
+            <td>Crusty</td>
+            <td>23.57</td>
           </tr>
           <tr>
-            <td>Ashton</td>
-            <td>A Score</td>
+            <td>test12</td>
+            <td>44.38</td>
           </tr>
           <tr>
-            <td>Mithat</td>
-            <td>M Score</td>
+            <td>check</td>
+            <td>58.23</td>
           </tr>
         </tbody>
       </table>
@@ -303,11 +295,6 @@ export default function Home() {
       >
         Share
       </div>
-      {/* Non-interactive Share Box 
-      <div className="shareBox">
-        Share
-      </div>
-      */}
     </main>
   )
 }
