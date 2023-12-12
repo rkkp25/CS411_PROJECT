@@ -80,7 +80,7 @@ def hex_to_rgb(hex_color):
 
 def calc_score(guess_colors, actual_colors, score):
     # Mithat is trying something
-    assert actual_colors is not None
+    assert actual_colors is not None #hi
     assert guess_colors is not None
 
     rgb_guess_colors = guess_colors #the user's guessed colors are already in rgb format
