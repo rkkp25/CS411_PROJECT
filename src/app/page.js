@@ -23,7 +23,6 @@ const Circle = ({ color }) => (
 
 export default function Home() {
 
-
   useEffect(() => {
     function start(){
       gapi.client.init({
@@ -75,8 +74,8 @@ export default function Home() {
     event.preventDefault();
     try {
       const payload = {
-        guesses: Object.values(colorGuesses).map(parseRGBInput),
-        actualColors: actualColors.map(parseRGBInput), // Include actual colors in the payload
+        guesses: Object.values(colorGuesses),
+        actualColors: actualColors, // Include actual colors in the payload
       };
       const response = await fetch('http://127.0.0.1:5000/api/submitColorGuesses', {
         method: 'POST',
@@ -190,7 +189,7 @@ export default function Home() {
           <input
             key={index}
             type="text"
-            maxlength="7"
+            maxLength="7"
             placeholder={`Guess for color ${index + 1}`}
             value={colorGuesses[index] || ''}
             onChange={e => handleColorGuessChange(index, e.target.value)}
